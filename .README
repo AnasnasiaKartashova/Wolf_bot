@@ -1,0 +1,3 @@
+This telegram bot gives out random boy's quotes.
+
+Implemented using redis and the random library. API key received from botfather.
