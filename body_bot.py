@@ -10,7 +10,7 @@ bot = telebot.TeleBot(API_KEY)
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     img = ['wolf.jfif', 'wolf_2.jpg', 'wolf_3.jfif', 'wolf_4.jfif', 'wolf_5.jfif',
-           'wolf_6.jpg', 'wolf_7.jpg', 'wolf_9.jpeg', 'wolf_8.jpg', 'wolf_10.jpg']
+           'wolf_6.jpg', 'wolf_7.jpg', 'wolf_8.jpg', 'wolf_9.jpeg', 'wolf_10.jpg']
     img_open = open(choice(img), 'rb')
     bot.send_photo(message.chat.id, img_open)
     bot.send_message(message.from_user.id, 'Ауф! Цитатка дня для риал пацана: ')
