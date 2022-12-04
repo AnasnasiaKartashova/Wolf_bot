@@ -1,5 +1,7 @@
 from api import API_KEY
 import telebot
+from PIL import Image, ImageDraw, ImageFont
+from textwrap import fill
 from random import choice
 import redis
 
@@ -9,11 +11,12 @@ bot = telebot.TeleBot(API_KEY)
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-    img = ['wolf.jfif', 'wolf_2.jpg', 'wolf_3.jfif', 'wolf_4.jfif', 'wolf_5.jfif',
-           'wolf_6.jpg', 'wolf_7.jpg', 'wolf_8.jpg', 'wolf_9.jpeg', 'wolf_10.jpg']
-    img_open = open(choice(img), 'rb')
-    bot.send_photo(message.chat.id, img_open)
+
     bot.send_message(message.from_user.id, 'Ауф! Цитатка дня для риал пацана: ')
+
+    img = ['wolf_2.jpg', 'wolf_6.jpg', 'wolf_8.jpg', 'wolf_9.jpeg', 'wolf_10.jpg']
+    img_open = Image.open(choice(img))
+    idraw = ImageDraw.Draw(img_open)
     quote = ['Кем бы ты ни был, кем бы ты не стал, помни, где ты был и кем ты стал.',
              'Лучше быть последним – первым, чем первым – последним.',
              'Работа не волк, работа это ворк, а волк это ходить.',
@@ -29,7 +32,11 @@ def get_text_messages(message):
              'Ты словно волк — всегда осторожный и в меру голодный.',
              'Он не поставит в жизни точки. Ничто не может быть сильней, Чем сердце волка-одиночки.',
              'Я тебе доверяю, но ты иногда что-то скрываешь. ~Серега']
-    bot.send_message(message.from_user.id, f'{choice(quote)}')
+    text_wolf = fill(choice(quote), width=25)
+    font = ImageFont.truetype("arial.ttf", size=55)
+    idraw.text((10, 10), text_wolf, font=font, fill='#c6f2ea')
+    img_open.save('img_open_watermarked.png')
+    bot.send_photo(message.chat.id, img_open)
 
 
 bot.polling(none_stop=True, interval=0)
