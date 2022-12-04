@@ -1,5 +1,5 @@
 # Wolf_bot
 
-This telegram bot gives out random boy's quotes and sent images.
+The second version of the telegram bot. This telegram bot gives out random boy's quotes and sent images. Quotes appear on the picture.
 
-Implemented using redis and the random library. API key received from botfather.
+Implemented using redis, pillow, textwrap and the random libraries. API key received from botfather.
