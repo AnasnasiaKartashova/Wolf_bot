@@ -17,7 +17,7 @@ def get_text_messages(message):
 
     bot.send_message(message.from_user.id, 'Ауф! Цитатка дня для риал пацана: ')
 
-    img = ['static/wolf_2.jpg', 'static/wolf_6.jpg', 'static/wolf_8.jpg', 'static/wolf_9.jpeg', 'static/wolf_10.jpg']
+    img = ['static1/wolf_2.jpg', 'static1/wolf_6.jpg', 'static1/wolf_8.jpg', 'static1/wolf_9.jpeg', 'static1/wolf_10.jpg']
     img_open = Image.open(choice(img))
     idraw = ImageDraw.Draw(img_open)
     quote = ['Кем бы ты ни был, кем бы ты не стал, помни, где ты был и кем ты стал.',
