@@ -1,12 +1,15 @@
-from api import API_KEY
+import os
+from dotenv import load_dotenv
 import telebot
 from PIL import Image, ImageDraw, ImageFont
 from textwrap import fill
 from random import choice
 import redis
 
+load_dotenv()
+
 database = redis.Redis(host='localhost', port=6379, db=0)
-bot = telebot.TeleBot(API_KEY)
+bot = telebot.TeleBot(os.getenv('API_KEY'))
 
 
 @bot.message_handler(content_types=['text'])
@@ -14,7 +17,7 @@ def get_text_messages(message):
 
     bot.send_message(message.from_user.id, 'Ауф! Цитатка дня для риал пацана: ')
 
-    img = ['wolf_2.jpg', 'wolf_6.jpg', 'wolf_8.jpg', 'wolf_9.jpeg', 'wolf_10.jpg']
+    img = ['static/wolf_2.jpg', 'static/wolf_6.jpg', 'static/wolf_8.jpg', 'static/wolf_9.jpeg', 'static/wolf_10.jpg']
     img_open = Image.open(choice(img))
     idraw = ImageDraw.Draw(img_open)
     quote = ['Кем бы ты ни был, кем бы ты не стал, помни, где ты был и кем ты стал.',
